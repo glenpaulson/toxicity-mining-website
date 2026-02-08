@@ -16,7 +16,10 @@ const Landing = () => {
         </section>
       </div>
 
-      <section className="bg-[#111111] text-white min-h-screen px-6 py-20 flex items-center">
+      <section
+        id="introduction"
+        className="bg-[#111111] text-white min-h-screen px-6 py-20 flex items-center"
+      >
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="flex flex-col justify-end">
             <h2 className="text-6xl md:text-8xl font-medium tracking-tighter leading-none">
