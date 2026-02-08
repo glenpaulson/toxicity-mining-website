@@ -97,6 +97,114 @@ const Landing = () => {
           </div>
         </div>
       </section>
+
+      <section className="bg-[#111111] text-gray-400 min-h-screen px-6 py-24 flex flex-col justify-center">
+        <div className="max-w-7xl mx-auto w-full mb-20 border-b border-gray-800 pb-8">
+          <h2 className="text-white text-5xl md:text-7xl font-medium tracking-tight">
+            Current Landscape
+          </h2>
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          <div>
+            <h3 className="text-white text-3xl font-normal mb-8 block">
+              Existing Solutions
+            </h3>
+
+            <div className="space-y-8 text-lg font-light leading-relaxed text-justify hyphens-auto">
+              <p>
+                <strong className="text-white font-medium block mb-2">
+                  Lexicon-Based Approaches
+                </strong>
+                Several approaches have been proposed to detect hate speech and
+                toxic language in online text. Early methods rely on keyword
+                lists or sentiment lexicons, such as profanity dictionaries or
+                tools like VADER. These approaches are simple and easy to
+                interpret, but they often fail to capture context, sarcasm, or
+                indirect forms of toxicity.
+              </p>
+              <p>
+                <strong className="text-white font-medium block mb-2">
+                  Traditional Machine Learning
+                </strong>
+                Traditional machine learning models, including Naive Bayes,
+                Logistic Regression, and Support Vector Machines, are commonly
+                used with TF-IDF features. These models are computationally
+                efficient and interpretable, but their performance is limited
+                when dealing with subtle or context-dependent toxic language.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-normal mb-8 block invisible">
+              Spacer
+            </h3>
+
+            <div className="space-y-8 text-lg font-light leading-relaxed text-justify hyphens-auto">
+              <p>
+                <strong className="text-white font-medium block mb-2">
+                  Transformer Models
+                </strong>
+                More recent work focuses on transformer-based models such as
+                BERT, DistilBERT, and RoBERTa. These models achieve strong
+                performance on benchmark datasets like Google Jigsaw Civil
+                Comments by capturing semantic and contextual information.
+                However, they require higher computational resources and provide
+                limited interpretability.
+                <br />
+                Some studies also apply unsupervised techniques such as
+                clustering or topic modeling to explore patterns in toxic
+                language. These techniques are mainly used for exploratory
+                analysis rather than direct prediction.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#EBEBEB] text-[#1a1a1a] min-h-screen px-6 py-24 flex flex-col justify-center items-center">
+        <div className="max-w-5xl w-full bg-white p-8 md:p-16 rounded-[2.5rem] shadow-xl">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+            <div className="md:col-span-4">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter leading-none mb-4">
+                Our
+                <br />
+                Solution
+              </h2>
+              <div className="h-1 w-20 bg-[#1a1a1a] mt-4 rounded-full"></div>
+            </div>
+
+            <div className="md:col-span-8">
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed text-justify hyphens-auto">
+                This project addresses these gaps by using the{" "}
+                <strong className="text-gray-900">
+                  Google Jigsaw Civil Comments
+                </strong>{" "}
+                dataset as a clean benchmark for supervised learning and{" "}
+                <strong className="text-gray-900">Reddit data</strong> as a
+                real-world validation source.
+              </p>
+
+              <div className="my-8 p-6 bg-[#1a1a1a] rounded-2xl border border-blue-100 text-[#EBEBEB] text-lg font-medium italic">
+                "DistilBERT is used as the primary predictive model due to its
+                strong ability to capture contextual meaning."
+              </div>
+
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed text-justify hyphens-auto">
+                Traditional machine learning models are used for comparison and
+                interpretability. In addition,{" "}
+                <strong className="text-gray-900">
+                  clustering and association rule mining
+                </strong>{" "}
+                are applied to discover and explain linguistic patterns
+                underlying toxic language. The limitations of weak labels in
+                Reddit data are explicitly discussed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
