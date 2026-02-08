@@ -1,17 +1,64 @@
+import { ArrowDownRight, Users, Clock, Globe } from "lucide-react";
+
 const Landing = () => {
   return (
-    <div className="h-[calc(100vh-64px)] bg-[#EBEBEB] text-[#1a1a1a] font-sans flex flex-col justify-center items-center">
-      <section className="max-w-7xl mx-auto px-6 text-center">
-        <div className="flex flex-col items-center gap-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight font-medium">
-            Toxicity Mining using NLP
-          </h1>
+    <div className="bg-[#EBEBEB] text-[#1a1a1a] font-sans">
+      <div className="h-[calc(100vh-64px)] flex flex-col justify-center items-center">
+        <section className="max-w-7xl mx-auto px-6 text-center">
+          <div className="flex flex-col items-center gap-6">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight font-medium">
+              Toxicity Mining using NLP
+            </h1>
+            <p className="text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto font-light">
+              The issue of online hate speech affects multiple groups across
+              social media ecosystems. The most directly affected stakeholders
+              are users who become targets of toxic or identity-based language.
+            </p>
+          </div>
+        </section>
+      </div>
 
-          <p className="text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto font-light">
-            The issue of online hate speech affects multiple groups across
-            social media ecosystems. The most directly affected stakeholders are
-            users who become targets of toxic or identity-based language.
-          </p>
+      <section className="bg-[#111111] text-white min-h-screen px-6 py-20 flex items-center">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="flex flex-col justify-end">
+            <h2 className="text-6xl md:text-8xl font-medium tracking-tighter leading-none">
+              Introduction
+            </h2>
+          </div>
+
+          <div className="flex flex-col justify-center gap-8 text-gray-400 text-lg leading-relaxed font-light">
+            <p>
+              <strong className="text-white font-normal block mb-2">
+                Research Topic & Significance
+              </strong>
+              The research focuses on detecting and categorizing hate speech and
+              toxic language on social media using Natural Language Processing
+              (NLP). The main objective is to determine how effectively machine
+              learning models can differentiate between general offensive
+              language and hate speech that is targeted toward specific
+              individuals, communities, or identities. This distinction is
+              important because not all offensive content has the same social
+              impact, and identity-based hate speech can cause more serious
+              psychological and societal harm. With the rapid growth of social
+              media platforms, large volumes of user-generated content are
+              posted every day, making manual moderation impractical. Automated
+              NLP-based systems can help identify harmful content at scale and
+              support safer digital environments. Such systems can assist
+              platforms in enforcing policies that protect the rights of users
+              and prevent targeted harassment. contributes to safer, more
+              inclusive, and respectful digital communities.
+              <br />
+              <br />
+              The outcomes of this research will support the enforcement of more
+              appropriate rules and policies on social media platforms. It will
+              help ensure that the rights of individuals and communities are
+              protected while maintaining open communication spaces. Users,
+              moderators, social media companies, and policy makers all benefit
+              from improved hate speech detection systems. Ultimately, this
+              research contributes to safer, more inclusive, and respectful
+              digital communities.
+            </p>
+          </div>
         </div>
       </section>
     </div>
