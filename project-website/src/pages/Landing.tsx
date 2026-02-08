@@ -1,5 +1,3 @@
-import { ArrowDownRight, Users, Clock, Globe } from "lucide-react";
-
 const Landing = () => {
   return (
     <div className="bg-[#EBEBEB] text-[#1a1a1a] font-sans">
@@ -27,7 +25,7 @@ const Landing = () => {
           </div>
 
           <div className="flex flex-col justify-center gap-8 text-gray-400 text-lg leading-relaxed font-light">
-            <p>
+            <p className="text-justify">
               <strong className="text-white font-normal block mb-2">
                 Research Topic & Significance
               </strong>
@@ -57,6 +55,44 @@ const Landing = () => {
               from improved hate speech detection systems. Ultimately, this
               research contributes to safer, more inclusive, and respectful
               digital communities.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#EBEBEB] text-[#1a1a1a] min-h-screen px-6 py-24 flex flex-col justify-center">
+        <div className="max-w-7xl mx-auto w-full mb-16 border-b border-gray-300 pb-8">
+          <h2 className="text-5xl md:text-7xl font-medium tracking-tight">
+            Stakeholders
+          </h2>
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 text-lg leading-relaxed">
+          <div>
+            <h3 className="text-2xl font-bold mb-4">Who is affected?</h3>
+            <p className="mb-8 text-gray-600 text-justify">
+              The issue of online hate speech affects multiple groups across
+              social media ecosystems. The most directly affected stakeholders
+              are users who become targets of toxic or identity-based language.
+              Such exposure can lead to emotional distress, reduced
+              participation, and a negative online experience. By identifying
+              patterns of hate speech, the research helps highlight which
+              communities or groups are most frequently victimized.
+            </p>
+          </div>
+          <div>
+            <p className="text-gray-600 text-justify">
+              Content moderators and trust-and-safety teams rely on automated
+              systems to filter and prioritize harmful posts, making their work
+              more efficient and scalable. Advertisers and business partners are
+              also affected, as toxic environments can damage brand reputation
+              and reduce platform value. In addition, governments and regulatory
+              bodies are stakeholders because online hate speech can influence
+              public discourse, elections, and real-world conflicts. Researchers
+              and developers working in AI and NLP are also impacted, as they
+              must design systems that are accurate, fair, and ethical. Overall,
+              this issue has broad real-world implications across social,
+              economic, and technological domains.
             </p>
           </div>
         </div>
