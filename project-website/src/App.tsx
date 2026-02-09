@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
 import Blueprint from "./pages/Blueprint";
 import Footer from "./components/Footer";
+import Proposal from "./pages/Proposal";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/blueprint" element={<Blueprint />} />{" "}
+            <Route path="/proposal" element={<Proposal />} />{" "}
           </Routes>
         </main>
         <Footer />

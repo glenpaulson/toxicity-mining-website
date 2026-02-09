@@ -40,6 +40,13 @@ const Footer = () => {
               Project Blueprint
             </Link>
             <Link
+              to="/proposal"
+              onClick={scrollToTop}
+              className="text-gray-300 hover:text-white transition-colors w-fit"
+            >
+              Proposal Overview
+            </Link>
+            <Link
               to="/team"
               onClick={scrollToTop}
               className="text-gray-300 hover:text-white transition-colors w-fit"
