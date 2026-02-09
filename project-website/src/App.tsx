@@ -4,6 +4,7 @@ import Landing from "./pages/Landing";
 import Blueprint from "./pages/Blueprint";
 import Footer from "./components/Footer";
 import Proposal from "./pages/Proposal";
+import Team from "./pages/Team";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/blueprint" element={<Blueprint />} />{" "}
             <Route path="/proposal" element={<Proposal />} />{" "}
+            <Route path="/team" element={<Team />} />{" "}
           </Routes>
         </main>
         <Footer />

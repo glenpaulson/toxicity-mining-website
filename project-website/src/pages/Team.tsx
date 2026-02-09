@@ -1,0 +1,117 @@
+import { Github, Linkedin, Globe } from "lucide-react";
+
+const Team = () => {
+  const teamMembers = [
+    {
+      name: "Rahul Hipparkar",
+      role: "Modelling Lead",
+      image: "/glen.png",
+      bio: "Kaggle Expert with 3.5+ years of experience. Specializes in automation, deep learning, and NLP using Python, PyTorch, and TensorFlow.",
+      social: {
+        linkedin: "https://linkedin.com",
+        github: "https://github.com",
+      },
+    },
+    {
+      name: "Himanshu Jain",
+      role: "Data Mining Lead",
+      image: "/glen.png",
+      bio: "Focused on applied AI and analytics. His project portfolio spans healthcare computer vision and social media NLP.",
+      social: {
+        linkedin: "https://linkedin.com",
+        github: "https://github.com",
+      },
+    },
+    {
+      name: "Augustine Joy",
+      role: "Data Lead/Research ",
+      image: "/glen.png",
+      bio: "Lorem Ipsum.",
+      social: {
+        linkedin: "https://linkedin.com",
+        github: "https://github.com",
+      },
+    },
+    {
+      name: "Glen Vadakkoott",
+      role: "Data/AI/Visualization Lead",
+      image: "/glen.png",
+      bio: "Specializes in bridging software engineering and AI, with hands-on experience in predictive modeling, NLP, and full-stack development.",
+      social: {
+        linkedin: "https://linkedin.com",
+        github: "https://github.com",
+      },
+    },
+  ];
+
+  return (
+    <div className="bg-[#EBEBEB] h-[calc(100vh-64px)] flex flex-col justify-center items-center px-6">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="text-center mb-10 max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-[#1a1a1a] mb-4">
+            Meet the Team
+          </h1>
+          <p className="text-lg text-gray-500 leading-relaxed">
+            "Decoding linguistic patterns of online toxicity to create safer
+            digital spaces."
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {teamMembers.map((member, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex flex-col items-center text-center"
+            >
+              <div className="mb-4 relative">
+                <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-gray-50">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              <h3 className="text-lg font-bold text-gray-900 mb-1">
+                {member.name}
+              </h3>
+              <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-[10px] font-bold tracking-widest uppercase mb-3">
+                {member.role}
+              </span>
+
+              <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-grow">
+                {member.bio}
+              </p>
+
+              <div className="flex gap-4 mt-auto pt-4 border-t border-gray-100 w-full justify-center">
+                {member.social.linkedin && (
+                  <a
+                    href={member.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-blue-700 transition-colors"
+                  >
+                    <Linkedin size={18} />
+                  </a>
+                )}
+                {member.social.github && (
+                  <a
+                    href={member.social.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-gray-900 transition-colors"
+                  >
+                    <Github size={18} />
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Team;
