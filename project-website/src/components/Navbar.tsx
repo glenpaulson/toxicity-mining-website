@@ -8,7 +8,7 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isDarkPage = location.pathname === "/blueprint";
+  const isDarkPage = false;
 
   useEffect(() => {
     const handleScroll = () => {
