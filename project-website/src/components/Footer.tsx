@@ -2,6 +2,13 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <footer className="bg-black text-white py-16 px-6 border-t border-gray-900">
       <div className="max-w-7xl mx-auto">
@@ -20,18 +27,21 @@ const Footer = () => {
             </h4>
             <Link
               to="/"
+              onClick={scrollToTop}
               className="text-gray-300 hover:text-white transition-colors w-fit"
             >
               Introduction
             </Link>
             <Link
               to="/blueprint"
+              onClick={scrollToTop}
               className="text-gray-300 hover:text-white transition-colors w-fit"
             >
               Project Blueprint
             </Link>
             <Link
               to="/team"
+              onClick={scrollToTop}
               className="text-gray-300 hover:text-white transition-colors w-fit"
             >
               Meet the Team
