@@ -1,5 +1,3 @@
-import { ArrowDown } from "lucide-react";
-
 const Landing = () => {
   const scrollToIntro = () => {
     const element = document.getElementById("introduction");
