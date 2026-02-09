@@ -1,11 +1,12 @@
 import { Github, Linkedin } from "lucide-react";
+import glenImg from "../assets/glen.png";
 
 const Team = () => {
   const teamMembers = [
     {
       name: "Rahul Hipparkar",
       role: "Modelling Lead",
-      image: "/glen.png",
+      image: glenImg,
       bio: "Kaggle Expert with 3.5+ years of experience. Specializes in automation, deep learning, and NLP using Python, PyTorch, and TensorFlow.",
       social: {
         linkedin: "https://linkedin.com",
@@ -15,7 +16,7 @@ const Team = () => {
     {
       name: "Himanshu Jain",
       role: "Data Mining Lead",
-      image: "/glen.png",
+      image: glenImg,
       bio: "Focused on applied AI and analytics. His project portfolio spans healthcare computer vision and social media NLP.",
       social: {
         linkedin: "https://linkedin.com",
@@ -25,7 +26,7 @@ const Team = () => {
     {
       name: "Augustine Joy",
       role: "Data Lead/Research ",
-      image: "/glen.png",
+      image: glenImg,
       bio: "Lorem Ipsum.",
       social: {
         linkedin: "https://linkedin.com",
@@ -35,7 +36,7 @@ const Team = () => {
     {
       name: "Glen Vadakkoott",
       role: "Data/AI/Visualization Lead",
-      image: "/glen.png",
+      image: glenImg,
       bio: "Specializes in bridging software engineering and AI, with hands-on experience in predictive modeling, NLP, and full-stack development.",
       social: {
         linkedin: "https://linkedin.com",
