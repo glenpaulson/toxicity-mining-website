@@ -1,7 +1,17 @@
+import { ArrowDown } from "lucide-react";
+
 const Landing = () => {
+  const scrollToIntro = () => {
+    const element = document.getElementById("introduction");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="bg-[#EBEBEB] text-[#1a1a1a] font-sans">
-      <div className="h-[calc(100vh-64px)] flex flex-col justify-center items-center">
+      <div className="min-h-screen flex flex-col justify-center items-center px-6">
+        {" "}
         <section className="max-w-7xl mx-auto px-6 text-center">
           <div className="flex flex-col items-center gap-6">
             <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight font-medium">
@@ -12,6 +22,15 @@ const Landing = () => {
               social media ecosystems. The most directly affected stakeholders
               are users who become targets of toxic or identity-based language.
             </p>
+
+            <button
+              onClick={scrollToIntro}
+              className="mt-4 group flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-[#1a1a1a] hover:text-white transition-all duration-300"
+            >
+              <span className="text-sm font-medium tracking-wide uppercase">
+                Learn More
+              </span>
+            </button>
           </div>
         </section>
       </div>
