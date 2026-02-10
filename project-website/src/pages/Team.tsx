@@ -1,5 +1,6 @@
 import { Github, Linkedin } from "lucide-react";
 import glenImg from "../assets/glen.png";
+import himanshuImg from "../assets/himanshu.png";
 
 const Team = () => {
   const teamMembers = [
@@ -9,18 +10,18 @@ const Team = () => {
       image: glenImg,
       bio: "Kaggle Expert with 3.5+ years of experience. Specializes in automation, deep learning, and NLP using Python, PyTorch, and TensorFlow.",
       social: {
-        linkedin: "https://linkedin.com",
-        github: "https://github.com",
+        linkedin: "https://www.linkedin.com/in/rahul-hipparkar/",
+        github: "https://github.com/RahulHipparkar",
       },
     },
     {
       name: "Himanshu Jain",
       role: "Data Mining Lead",
-      image: glenImg,
+      image: himanshuImg,
       bio: "Focused on applied AI and analytics. His project portfolio spans healthcare computer vision and social media NLP.",
       social: {
-        linkedin: "https://linkedin.com",
-        github: "https://github.com",
+        linkedin: "https://www.linkedin.com/in/himanshu-jain-559335222",
+        github: "https://github.com/himanshumjain15",
       },
     },
     {
@@ -29,8 +30,8 @@ const Team = () => {
       image: glenImg,
       bio: "Lorem Ipsum.",
       social: {
-        linkedin: "https://linkedin.com",
-        github: "https://github.com",
+        linkedin: "https://www.linkedin.com/in/augustine-antony-joy/",
+        github: "https://github.com/augustineantonyjoy",
       },
     },
     {
@@ -39,8 +40,8 @@ const Team = () => {
       image: glenImg,
       bio: "Specializes in bridging software engineering and AI, with hands-on experience in predictive modeling, NLP, and full-stack development.",
       social: {
-        linkedin: "https://linkedin.com",
-        github: "https://github.com",
+        linkedin: "https://www.linkedin.com/in/glen-paulson-v/",
+        github: "https://github.com/glenpaulson",
       },
     },
   ];
