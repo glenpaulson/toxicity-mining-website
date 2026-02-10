@@ -2,6 +2,7 @@ import { Github, Linkedin } from "lucide-react";
 import glenImg from "../assets/glen.png";
 import himanshuImg from "../assets/himanshu.png";
 import rahulImg from "../assets/rahul.png";
+import augustineImg from "../assets/augustine.png";
 
 const Team = () => {
   const teamMembers = [
@@ -19,7 +20,7 @@ const Team = () => {
       name: "Himanshu Jain",
       role: "Data Mining Lead",
       image: himanshuImg,
-      bio: "Focused on applied AI and analytics. His project portfolio spans healthcare computer vision and social media NLP.",
+      bio: "Focused on applied AI and analytics. Project portfolio spans healthcare computer vision and social media NLP.",
       social: {
         linkedin: "https://www.linkedin.com/in/himanshu-jain-559335222",
         github: "https://github.com/himanshumjain15",
@@ -28,8 +29,8 @@ const Team = () => {
     {
       name: "Augustine Joy",
       role: "Data Lead/Research ",
-      image: glenImg,
-      bio: "Lorem Ipsum.",
+      image: augustineImg,
+      bio: "Over three years of experience at IBM. Specializes in machine learning and deep learning using Python, SQL, and PyTorch.",
       social: {
         linkedin: "https://www.linkedin.com/in/augustine-antony-joy/",
         github: "https://github.com/augustineantonyjoy",
@@ -39,7 +40,7 @@ const Team = () => {
       name: "Glen Vadakkoott",
       role: "Data/AI/Visualization Lead",
       image: glenImg,
-      bio: "Specializes in bridging software engineering and AI, with hands-on experience in predictive modeling, NLP, and full-stack development.",
+      bio: "Specializes in ML and deep learning, with hands-on experience in Python, SQL, and frameworks like TensorFlow and PyTorch. Over 4 yrs exp in full-stack development.",
       social: {
         linkedin: "https://www.linkedin.com/in/glen-paulson-v/",
         github: "https://github.com/glenpaulson",

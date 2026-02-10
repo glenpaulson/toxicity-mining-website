@@ -61,7 +61,7 @@ const Footer = () => {
             </h4>
 
             <a
-              href="https://github.com"
+              href="https://github.com/glenpaulson/toxicity-mining-website"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2 text-gray-300 hover:text-white transition-colors w-fit"

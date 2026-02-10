@@ -1,3 +1,5 @@
+import pewStatImg from "../assets/pew-research.png";
+
 const Landing = () => {
   const scrollToIntro = () => {
     const element = document.getElementById("introduction");
@@ -183,20 +185,18 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="bg-[#EBEBEB] text-[#1a1a1a] min-h-screen px-6 py-24 flex flex-col justify-center items-center">
-        <div className="max-w-5xl w-full bg-white p-8 md:p-16 rounded-[2.5rem] shadow-xl">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
-            <div className="md:col-span-4">
+      <section className="bg-[#EBEBEB] text-[#1a1a1a] min-h-screen px-6 py-24 flex flex-col justify-center">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl flex flex-col">
+            <div className="mb-8">
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter leading-none mb-4">
-                Our
-                <br />
-                Solution
+                Our Solution
               </h2>
               <div className="h-1 w-20 bg-[#1a1a1a] mt-4 rounded-full"></div>
             </div>
 
-            <div className="md:col-span-8">
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed text-justify hyphens-auto">
+            <div className="space-y-6 flex-grow">
+              <p className="text-lg text-gray-600 leading-relaxed text-justify hyphens-auto">
                 This project addresses these gaps by using the{" "}
                 <strong className="text-gray-900">
                   Google Jigsaw Civil Comments
@@ -206,22 +206,52 @@ const Landing = () => {
                 real-world validation source.
               </p>
 
-              <div className="my-8 p-6 bg-[#1a1a1a] rounded-2xl border border-blue-100 text-[#EBEBEB] text-lg font-medium italic">
+              <div className="p-6 bg-[#1a1a1a] rounded-2xl border border-blue-100 text-[#EBEBEB] text-lg font-medium italic">
                 "DistilBERT is used as the primary predictive model due to its
                 strong ability to capture contextual meaning."
               </div>
 
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed text-justify hyphens-auto">
+              <p className="text-lg text-gray-600 leading-relaxed text-justify hyphens-auto">
                 Traditional machine learning models are used for comparison and
                 interpretability. In addition,{" "}
                 <strong className="text-gray-900">
                   clustering and association rule mining
                 </strong>{" "}
                 are applied to discover and explain linguistic patterns
-                underlying toxic language. The limitations of weak labels in
-                Reddit data are explicitly discussed.
+                underlying toxic language.
               </p>
             </div>
+          </div>
+
+          <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl flex flex-col">
+            <div className="mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter leading-none mb-4">
+                Why it matters
+              </h2>
+              <div className="h-1 w-20 bg-[#1a1a1a] mt-4 rounded-full"></div>
+            </div>
+
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              Research shows that identity-based harassment is not distributed
+              equally, making context-aware models essential for fair
+              moderation.
+              <a
+                href="https://www.pewresearch.org/internet/2021/01/13/the-state-of-online-harassment/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 inline-block text-blue-600 font-bold hover:text-blue-800 hover:underline transition-colors"
+              >
+                Read More Here
+              </a>
+            </p>
+
+            <figure className="mt-auto bg-gray-50 p-4 rounded-xl border border-gray-100">
+              <img
+                src={pewStatImg}
+                alt="Chart showing harassment targets by race and ethnicity"
+                className="w-full h-auto rounded-lg mix-blend-multiply"
+              />
+            </figure>
           </div>
         </div>
       </section>
