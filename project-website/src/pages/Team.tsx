@@ -47,7 +47,7 @@ const Team = () => {
   ];
 
   return (
-    <div className="bg-[#EBEBEB] h-[calc(100vh-64px)] flex flex-col justify-center items-center px-6">
+    <div className="bg-[#EBEBEB] min-h-[calc(100vh-64px)] flex flex-col justify-center items-center px-6 py-12">
       <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-10 max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-[#1a1a1a] mb-4">
