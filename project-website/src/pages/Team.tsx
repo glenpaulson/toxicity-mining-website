@@ -1,13 +1,14 @@
 import { Github, Linkedin } from "lucide-react";
 import glenImg from "../assets/glen.png";
 import himanshuImg from "../assets/himanshu.png";
+import rahulImg from "../assets/rahul.png";
 
 const Team = () => {
   const teamMembers = [
     {
       name: "Rahul Hipparkar",
       role: "Modelling Lead",
-      image: glenImg,
+      image: rahulImg,
       bio: "Kaggle Expert with 3.5+ years of experience. Specializes in automation, deep learning, and NLP using Python, PyTorch, and TensorFlow.",
       social: {
         linkedin: "https://www.linkedin.com/in/rahul-hipparkar/",

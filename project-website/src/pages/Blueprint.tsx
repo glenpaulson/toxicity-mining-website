@@ -34,7 +34,7 @@ const Blueprint = () => {
 
   return (
     <div>
-      <div className="bg-[#EBEBEB] text-[#1a1a1a] px-6 min-h-screen flex flex-col justify-center">
+      <div className="bg-[#EBEBEB] text-[#1a1a1a] px-6 min-h-screen flex flex-col justify-center py-24">
         <div className="max-w-7xl mx-auto w-full">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">
@@ -56,7 +56,6 @@ const Blueprint = () => {
                     key={milestone.id}
                     className="flex flex-col items-center text-center"
                   >
-                    {/* Circle Indicator (Static - No Hover Animations) */}
                     <div
                       className={`relative z-10 w-16 h-16 rounded-full border-4 flex items-center justify-center mb-6 
                       ${
