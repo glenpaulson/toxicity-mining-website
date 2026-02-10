@@ -27,20 +27,22 @@ const Navbar = () => {
     setIsOpen(false);
 
     if (location.pathname === path) {
-      const element = targetId ? document.getElementById(targetId) : null;
-
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+      if (targetId) {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } else {
       navigate(path);
+      window.scrollTo(0, 0);
     }
   };
 
   const navLinks = [
-    { name: "Introduction", href: "/", targetId: "introduction" },
+    { name: "Introduction", href: "/" },
     { name: "Blueprint", href: "/blueprint" },
     { name: "Proposal", href: "/proposal" },
     { name: "Team", href: "/team" },
@@ -60,13 +62,13 @@ const Navbar = () => {
           : "bg-transparent py-8"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <div className="hidden md:flex gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              onClick={(e) => handleNavigation(e, link.href, link.targetId)}
+              onClick={(e) => handleNavigation(e, link.href)}
               className={`text-base font-medium hover:text-blue-600 transition-colors cursor-pointer ${getTextColor()}`}
             >
               {link.name}
@@ -74,7 +76,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="md:hidden">
+        <div className="md:hidden ml-auto">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`${getTextColor()} focus:outline-none`}
@@ -85,13 +87,13 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-6 px-6 flex flex-col items-start space-y-4">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-6 px-6 flex flex-col items-start space-y-4 border-t border-gray-100">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              onClick={(e) => handleNavigation(e, link.href, link.targetId)}
-              className="text-gray-800 font-medium text-lg cursor-pointer"
+              onClick={(e) => handleNavigation(e, link.href)}
+              className="text-gray-800 font-medium text-lg cursor-pointer block w-full hover:text-blue-600"
             >
               {link.name}
             </a>

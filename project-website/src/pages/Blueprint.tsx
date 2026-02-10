@@ -188,17 +188,15 @@ const Blueprint = () => {
                 </p>
               </div>
 
-              <div className="bg-gray-900 p-6 rounded-xl border border-gray-800">
-                <h4 className="text-blue-400 text-xl font-bold mb-3">
+              <div>
+                <h4 className="text-white text-xl font-medium mb-3">
                   Modeling Strategy
                 </h4>
-                <p className="leading-relaxed text-justify hyphens-auto mb-4">
+                <p className="leading-relaxed text-justify hyphens-auto">
                   Baseline machine learning models such as Naive Bayes, Logistic
-                  Regression and Linear SVM are trained using TF-IDF features.
-                </p>
-                <p className="text-white italic">
-                  A transformer-based model, DistilBERT, is fine-tuned on
-                  labeled data to capture contextual and semantic information.
+                  Regression and Linear SVM are trained using TF-IDF features. A
+                  transformer-based model, DistilBERT, is fine-tuned on labeled
+                  data to capture contextual and semantic information.
                 </p>
               </div>
 
