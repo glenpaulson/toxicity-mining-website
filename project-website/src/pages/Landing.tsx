@@ -241,7 +241,7 @@ const Landing = () => {
                 rel="noopener noreferrer"
                 className="ml-2 inline-block text-blue-600 font-bold hover:text-blue-800 hover:underline transition-colors"
               >
-                Read More Here
+                Source
               </a>
             </p>
 
