@@ -13,7 +13,7 @@ const Blueprint = () => {
       id: 2,
       title: "Data Preparation",
       date: "Mar 6",
-      status: "upcoming",
+      status: "completed",
       description: "Collection, Cleaning & Labeling",
     },
     {
