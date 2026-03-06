@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Database, Filter, ShieldAlert, X, BarChart2 } from "lucide-react";
+import {
+  Database,
+  Filter,
+  ShieldAlert,
+  X,
+  BarChart2,
+  CheckCircle2,
+} from "lucide-react";
 
 import vis1Img from "../assets/class_distribution_comparison.png";
 import vis2Img from "../assets/text_length_by_label.png";
@@ -44,75 +51,74 @@ const DataExploration = () => {
     },
   ];
 
-  // We assign the imported image variables directly to the 'src' property
   const visualizations = [
     {
       id: 1,
-      title: "Class Distribution",
-      desc: "Highlights the massive 91.7% class imbalance in the Jigsaw dataset.",
+      title: "Class Distribution Comparison",
+      desc: "Reveals a heavy 91.7% class imbalance in the Jigsaw dataset, with the combined EDA dataset sitting at 74.8% non-toxic.",
       src: vis1Img,
       span: "col-span-1",
     },
     {
       id: 2,
-      title: "Text Length by Dataset",
-      desc: "Violin plot comparing comment lengths between forums and tweets.",
+      title: "Text Length by Label",
+      desc: "Demonstrates that toxic and non-toxic texts have nearly identical median word counts (34 vs 36), showing length is not a strong predictor.",
       src: vis2Img,
       span: "col-span-1",
     },
     {
       id: 3,
-      title: "Text Length by Label",
-      desc: "Shows word count alone is not a useful feature for detecting toxicity.",
+      title: "Text Length by Dataset",
+      desc: "Violin plot illustrating the domain gap: Jigsaw comments are much longer (median 36 words) compared to Twitter tweets (median 19 words).",
       src: vis3Img,
       span: "col-span-1",
     },
     {
       id: 4,
-      title: "Toxicity Score Histogram",
-      desc: "Bimodal shape confirming 0.5 is a reasonable binarization threshold.",
+      title: "Top 5 Unigrams",
+      desc: "Shows 'stupid' is the most frequent word in hate content, indicating toxicity is often driven by direct personal insults rather than organized hate.",
       src: vis4Img,
       span: "col-span-1",
     },
     {
       id: 5,
-      title: "Feature Correlation",
-      desc: "Toxicity and insult have a very strong correlation (r=0.93).",
+      title: "Toxicity Feature Correlation",
+      desc: "Heatmap revealing a very strong correlation (r=0.93) between general toxicity and insults, while threats remain largely independent.",
       src: vis5Img,
       span: "col-span-1",
     },
     {
       id: 6,
-      title: "Top 5 Unigrams",
-      desc: "'Stupid' comes first, highlighting personal insults over organized hate.",
+      title: "Toxicity Score Distribution",
+      desc: "Histogram showing a bimodal shape, confirming that using a 0.5 threshold for binarizing Jigsaw labels is a sound approach.",
       src: vis6Img,
       span: "col-span-1",
     },
     {
       id: 7,
       title: "Word Cloud Comparison",
-      desc: "Neutral vs Hate content vocabularies side-by-side.",
+      desc: "Contrasts the aggressive vocabulary of hate content with the neutral, policy-oriented terminology found in non-hate comments.",
       src: vis7Img,
       span: "md:col-span-2 lg:col-span-2",
     },
     {
       id: 8,
       title: "Vocabulary Overlap",
-      desc: "Venn diagram showing only 2.6% overlap between Jigsaw and Twitter.",
+      desc: "Venn diagram exposing a mere 2.6% overlap in shared words between the Jigsaw and Twitter datasets.",
       src: vis8Img,
       span: "md:col-span-2 lg:col-span-1",
     },
     {
       id: 9,
       title: "t-SNE Embeddings",
-      desc: "Shows a large non-toxic cluster and a smaller toxic cluster.",
+      desc: "Visualizes a large non-toxic cluster and a smaller toxic cluster that are not cleanly separated linearly, supporting the use of non-linear models.",
       src: vis9Img,
       span: "md:col-span-2 lg:col-span-2",
     },
     {
       id: 10,
-      title: "KMeans Cluster",
-      desc: "KMeans with k=2 accurately matches the natural class split.",
+      title: "KMeans Cluster Analysis",
+      desc: "Shows that setting k=2 yields the best silhouette score and accurately reflects the natural toxic vs. non-toxic groupings in the data.",
       src: vis10Img,
       span: "col-span-1",
     },
@@ -120,7 +126,6 @@ const DataExploration = () => {
 
   return (
     <div>
-      {/* Top Light Section: Collection & Cleaning */}
       <div className="bg-[#EBEBEB] min-h-screen pt-32 pb-20 px-6 relative text-[#1a1a1a]">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
@@ -135,55 +140,80 @@ const DataExploration = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            {/* Data Acquisition */}
-            <div className="bg-white p-8 rounded-2xl border border-gray-300 shadow-sm">
+            <div className="bg-white p-8 rounded-2xl border border-gray-300 shadow-sm flex flex-col">
               <div className="flex items-center gap-2 mb-6">
                 <Database className="text-gray-400" size={24} />
                 <h3 className="text-sm font-bold uppercase tracking-widest text-gray-500">
-                  Data Acquisition
+                  Data Collection
                 </h3>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 flex-1">
                 <div>
-                  <h4 className="font-bold text-gray-900 mb-2">
-                    Primary Sources
+                  <h4 className="font-bold text-gray-900 mb-3">
+                    Key Steps in Data Collection
                   </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                    Data was collected dynamically using the HuggingFace
-                    Datasets API to satisfy project requirements[cite: 38, 39].
-                    We selected two highly relevant datasets:
-                  </p>
-                  <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5">
-                    <li>
-                      <strong>Google Civil Comments (Jigsaw):</strong> 1,804,874
-                      rows of forum comments with toxicity scores[cite: 40].
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Selected the Hugging Face Datasets API to satisfy the
+                        dynamic data collection requirement.
+                      </p>
                     </li>
-                    <li>
-                      <strong>TweetEval Hate:</strong> 9,000 rows of tweets with
-                      binary labels[cite: 40].
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Extracted Jigsaw Civil Comments containing roughly 1.8
+                        million records and the TweetEval Hate dataset with
+                        9,000 records.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Attempted to integrate the Reddit API using PRAW, but
+                        recent changes to their developer access rules made
+                        free-tier collection impractical.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Evaluated alternative sources like the YouTube Data API,
+                        but rejected them due to restrictive daily quota limits.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-indigo-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-800 font-medium text-sm leading-relaxed">
+                        Because Reddit API access was denied, we will be
+                        proceeding with web scraping to collect Reddit data in
+                        the next phase to ensure we capture a diverse
+                        cross-platform vocabulary.
+                      </p>
                     </li>
                   </ul>
-                </div>
-
-                <div className="pt-6 border-t border-gray-100">
-                  <h4 className="font-bold text-gray-900 mb-2">
-                    API Challenges & Justification
-                  </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    We initially configured PRAW to include the Reddit API[cite:
-                    42, 43]. However, Reddit's 2023 API rule changes restricted
-                    free-tier access[cite: 44]. Relying purely on the
-                    HuggingFace API guarantees dynamic access while capturing
-                    the necessary cross-platform vocabulary gap between long
-                    forum comments and short tweets[cite: 46, 48].
-                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Data Cleaning */}
-            <div className="bg-white p-8 rounded-2xl border border-gray-300 shadow-sm">
+            <div className="bg-white p-8 rounded-2xl border border-gray-300 shadow-sm flex flex-col">
               <div className="flex items-center gap-2 mb-6">
                 <Filter className="text-gray-400" size={24} />
                 <h3 className="text-sm font-bold uppercase tracking-widest text-gray-500">
@@ -191,16 +221,106 @@ const DataExploration = () => {
                 </h3>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 flex-1">
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  The initial datasets contained zero null values[cite: 56]. Our
-                  cleaning pipeline focused on eliminating exact duplicates to
-                  prevent model over-learning, and filtering out records with
-                  fewer than 3 words[cite: 60, 61, 63].
+                  The preprocessing pipeline focused on ensuring high data
+                  quality by removing noise while preserving natural text
+                  variations.
                 </p>
 
-                {/* Before/After Table */}
-                <div className="overflow-x-auto">
+                <div>
+                  <h4 className="font-bold text-gray-900 mb-3">
+                    Key Steps Executed
+                  </h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        <strong>Missing Values:</strong> Verified dataset
+                        completeness; an initial quality assessment confirmed
+                        zero null or missing values across both primary
+                        datasets.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        <strong>Duplicate and Consistency Checks:</strong>{" "}
+                        Eliminated exact duplicate rows to prevent model
+                        over-learning and removed unusually short texts (fewer
+                        than three words). Binarized continuous Jigsaw toxicity
+                        scores using a 0.5 threshold to harmonize with the
+                        Twitter dataset's label scheme.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        <strong>Outlier Treatment:</strong> Conducted IQR-based
+                        outlier detection on word counts; deliberately retained
+                        unusually long comments to preserve real-world writing
+                        patterns.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        <strong>Data Transformations:</strong> Standardized text
+                        by expanding contractions, converting to lowercase,
+                        removing URLs, and filtering out standard English
+                        stop-words.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        <strong>Feature Engineering:</strong> Extracted text
+                        features using TF-IDF vectorization with bigrams and
+                        capped at 50,000 maximum features.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        <strong>Dimensionality Reduction:</strong> Applied
+                        Truncated SVD (Latent Semantic Analysis) to reduce the
+                        sparse feature space from 50,000 down to 200 dimensions.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="text-blue-500 shrink-0 mt-0.5"
+                        size={18}
+                      />
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        <strong>Quality Validation:</strong> Normalized the
+                        final matrix using StandardScaler and confirmed
+                        readiness for ML training via stratified combined
+                        dataset views.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="overflow-x-auto pt-4 border-t border-gray-100">
                   <table className="w-full text-sm text-left text-gray-600 border-collapse">
                     <thead className="text-xs text-gray-900 uppercase bg-gray-50 border-b border-gray-200">
                       <tr>
@@ -227,24 +347,10 @@ const DataExploration = () => {
                     </tbody>
                   </table>
                 </div>
-
-                <div className="pt-6 border-t border-gray-100">
-                  <h4 className="font-bold text-gray-900 mb-2">
-                    Feature Engineering
-                  </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Text was preprocessed via contraction expansion, URL
-                    removal, and stop-word filtering[cite: 12]. We applied
-                    TF-IDF vectorization and used <strong>Truncated SVD</strong>{" "}
-                    (ideal for sparse matrices) to reduce our feature space from
-                    50,000 down to 200 dimensions[cite: 13, 104, 105].
-                  </p>
-                </div>
               </div>
             </div>
           </div>
 
-          {/* Visualizations Gallery */}
           <div className="mb-10 mt-20">
             <div className="flex items-center gap-3 mb-8 border-b border-gray-300 pb-6">
               <BarChart2 className="text-gray-500" size={28} />
@@ -263,7 +369,6 @@ const DataExploration = () => {
                     className="h-48 bg-gray-100 flex items-center justify-center cursor-zoom-in group relative overflow-hidden"
                     onClick={() => openModal(vis.src, vis.title, vis.desc)}
                   >
-                    {/* Replaced placeholder with an actual image tag */}
                     <img
                       src={vis.src}
                       alt={vis.title}
@@ -296,7 +401,6 @@ const DataExploration = () => {
         </div>
       </div>
 
-      {/* Dark Section: Ethics & Limitations */}
       <div className="bg-[#111111] text-gray-300 px-6 py-24">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
@@ -317,9 +421,9 @@ const DataExploration = () => {
               </h4>
               <p className="text-sm leading-relaxed text-gray-400">
                 NLP toxicity models are known to disproportionately flag
-                minority community language, including AAVE and in-group
-                slang[cite: 243]. We must monitor this in Milestone 3 by
-                disaggregating metrics by identity-term presence[cite: 244].
+                minority community language, including AAVE and in-group slang.
+                We must monitor this in Milestone 3 by disaggregating metrics by
+                identity-term presence.
               </p>
             </div>
 
@@ -330,8 +434,8 @@ const DataExploration = () => {
               </h4>
               <p className="text-sm leading-relaxed text-gray-400">
                 Jigsaw toxicity scores are crowd-sourced from human raters with
-                varying cultural backgrounds[cite: 241]. Binarizing at our 0.5
-                threshold unavoidably discards annotator uncertainty[cite: 242].
+                varying cultural backgrounds. Binarizing at our 0.5 threshold
+                unavoidably discards annotator uncertainty.
               </p>
             </div>
 
@@ -342,16 +446,15 @@ const DataExploration = () => {
               </h4>
               <p className="text-sm leading-relaxed text-gray-400">
                 Tweets are often replies to images, videos, or prior threads
-                unavailable in text-only datasets[cite: 245]. Without this
-                context, instances of sarcasm and irony may be miscategorized by
-                the model[cite: 246].
+                unavailable in text-only datasets. Without this context,
+                instances of sarcasm and irony may be miscategorized by the
+                model.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Repaired Image Modal */}
       {isModalOpen && activeImage && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm cursor-zoom-out"
