@@ -30,8 +30,6 @@ We are utilizing both curated datasets and live social media data:
 | **Google Jigsaw** | [HuggingFace](https://huggingface.co/datasets/google/civil_comments) | 660 MB (1.8M Rows) | text, toxicity, severe toxicity, insult, threat, identity threat  |
 | **TweetEval Hate** | [TweetEval Hate](https://huggingface.co/datasets/cardiffnlp/tweet_eval/viewer/emoji/train?row=0) | 9,000 rows | text + binary label |
 
-> **Note on Collection:** Reddit data collection is performed via rate-limited requests (~100 requests/min) to ensure feasibility and avoid API blocks.
-
 ## ⚠️ Potential Bias & Limitations
 We have identified several challenges and implemented specific mitigations:
 
