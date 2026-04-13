@@ -252,6 +252,7 @@ const models: Model[] = [
       { name: "Precision", value: "0.840" },
       { name: "Recall",    value: "0.800" },
       { name: "F1 Score",  value: "0.820" },
+      { name: "ROC-AUC",   value: "0.820" },
     ],
     dataTransformation: [
       { stage: "Raw Text", format: "String", shape: "(N,)" },
@@ -372,7 +373,7 @@ const comparisonRows = [
   { model: "Naïve Bayes",          acc: "0.779", prec: "0.773", rec: "0.779", f1: "0.776", auc: "0.779", highlight: false },
   { model: "LightGBM",             acc: "0.770", prec: "0.791", rec: "0.722", f1: "0.755", auc: "0.769", highlight: false },
   { model: "Logistic Regression",  acc: "0.839", prec: "0.875", rec: "0.784", f1: "0.827", auc: "0.915", highlight: false },
-  { model: "Stacking Classifier",  acc: "0.820", prec: "0.840", rec: "0.800", f1: "0.820", auc: "—",     highlight: false },
+  { model: "Stacking Classifier",  acc: "0.820", prec: "0.840", rec: "0.800", f1: "0.820", auc: "0.820", highlight: false },
   { model: "DistilBERT",           acc: "0.870", prec: "0.840", rec: "0.910", f1: "0.870", auc: "0.870", highlight: true  },
 ];
 
