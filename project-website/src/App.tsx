@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Proposal from "./pages/Proposal";
 import Team from "./pages/Team";
 import DataExploration from "./pages/DataExploration";
+import ModelsImplemented from "./pages/ModelsImplemented";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/blueprint" element={<Blueprint />} />{" "}
             <Route path="/proposal" element={<Proposal />} />{" "}
             <Route path="/data-exploration" element={<DataExploration />} />
+            <Route path="/models" element={<ModelsImplemented />} />
             <Route path="/team" element={<Team />} />{" "}
           </Routes>
         </main>
