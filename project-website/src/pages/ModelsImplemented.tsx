@@ -38,30 +38,30 @@ const models: Model[] = [
     summary:
       "A linear model for binary classification. Predicts the probability of a comment being toxic via the sigmoid function, trained on 50,000-dimensional TF-IDF features.",
     why: [
-      "Binary problem fit — toxicity is a binary outcome (toxic = 1 / non-toxic = 0); Logistic Regression is the canonical regression model for this.",
-      "Interpretability — learned coefficients directly reveal which TF-IDF features (words/n-grams) push a comment toward toxicity.",
-      "Strong TF-IDF baseline — well-known to perform strongly on high-dimensional sparse text features.",
-      "Regularisation — L1 (Lasso) and L2 (Ridge) penalties control overfitting and perform implicit feature selection across 50,000 TF-IDF dimensions.",
-      "Calibrated probabilities — outputs well-calibrated probabilities, making ROC-AUC meaningful and enabling future threshold adjustment.",
+      "Binary problem fit,toxicity is a binary outcome (toxic = 1 / non-toxic = 0); Logistic Regression is the canonical regression model for this.",
+      "Interpretability,learned coefficients directly reveal which TF-IDF features (words/n-grams) push a comment toward toxicity.",
+      "Strong TF-IDF baseline,well-known to perform strongly on high-dimensional sparse text features.",
+      "Regularisation,L1 (Lasso) and L2 (Ridge) penalties control overfitting and perform implicit feature selection across 50,000 TF-IDF dimensions.",
+      "Calibrated probabilities,outputs well-calibrated probabilities, making ROC-AUC meaningful and enabling future threshold adjustment.",
     ],
     assumptions: [
       { assumption: "Linear decision boundary in feature space", addressed: "TF-IDF maps raw text into a 50,000-dimensional sparse space; Logistic Regression finds a linear hyperplane effective for text classification." },
-      { assumption: "Features are numerical", addressed: "X_train/X_val/X_test are float64 TF-IDF matrices — no categorical conversion needed." },
+      { assumption: "Features are numerical", addressed: "X_train/X_val/X_test are float64 TF-IDF matrices,no categorical conversion needed." },
       { assumption: "Features are not perfectly multicollinear", addressed: "TF-IDF weights are document-specific; L1/L2 regularisation mitigates collinearity among co-occurring word features." },
       { assumption: "Observations are independent", addressed: "Each tweet/comment is independently sampled from the dataset." },
       { assumption: "No extreme outliers", addressed: "TF-IDF caps term influence via inverse document frequency; regularisation parameter C limits weight magnitude." },
-      { assumption: "Large enough sample", addressed: "Training set has ~47K samples — well above the minimum for stable logistic regression." },
+      { assumption: "Large enough sample", addressed: "Training set has ~47K samples,well above the minimum for stable logistic regression." },
     ],
     tuning: [
       "GridSearchCV over C ∈ {0.01, 0.1, 1.0, 10.0, 100.0} × penalty ∈ {L1, L2}.",
       "5-fold cross-validation scored on F1.",
-      "solver='liblinear' — supports both L1 and L2, faster than saga on ~47K samples.",
+      "solver='liblinear',supports both L1 and L2, faster than saga on ~47K samples.",
       "Best parameters: C = 1.0, penalty = L1 (CV F1 = 0.8195).",
       "Results visualised as a heatmap of mean CV F1 across the full parameter grid.",
     ],
     challenges: [
       { challenge: "Choosing L1 vs L2 penalty", solution: "Used GridSearchCV over both; L1 won because the 50,000-dim TF-IDF space benefits from sparse weight selection (irrelevant tokens zeroed out)." },
-      { challenge: "Solver selection & convergence speed", solution: "Used solver='liblinear' — supports both penalties and is faster than 'saga' on this dataset size. max_iter=500 ensures convergence." },
+      { challenge: "Solver selection & convergence speed", solution: "Used solver='liblinear',supports both penalties and is faster than 'saga' on this dataset size. max_iter=500 ensures convergence." },
       { challenge: "Class imbalance in raw dataset", solution: "Preprocessed pkl files use stratified splits from Milestone 2; class_weight='balanced' available if needed." },
       { challenge: "High-dimensional feature space (50,000 TF-IDF dims)", solution: "Regularisation parameter C controls the bias-variance trade-off; L1 penalty actively zeroes uninformative features." },
       { challenge: "Grid search run time", solution: "n_jobs=-1 parallelises across all available CPU cores." },
@@ -74,7 +74,7 @@ const models: Model[] = [
       { name: "ROC-AUC",   value: "0.915" },
     ],
     metricsNote:
-      "Classification metrics are used (not RMSE/R²) because Logistic Regression predicts binary class probabilities. R²/MSE on a binary {0,1} target is methodologically incorrect — every NLP toxicity benchmark uses Accuracy, F1, and ROC-AUC.",
+      "Classification metrics are used (not RMSE/R²) because Logistic Regression predicts binary class probabilities. R²/MSE on a binary {0,1} target is methodologically incorrect,every NLP toxicity benchmark uses Accuracy, F1, and ROC-AUC.",
     dataTransformation: [
       { stage: "Raw Text", format: "String (variable-length comment/tweet)", shape: "(N,)" },
       { stage: "After TF-IDF Vectorisation (50,000 vocab)", format: "Sparse float64 matrix", shape: "(N, 50,000)" },
@@ -94,10 +94,10 @@ const models: Model[] = [
     summary:
       "A probabilistic baseline classifier. Uses Complement Naïve Bayes on TF-IDF features, well-suited to high-dimensional sparse text.",
     why: [
-      "Strong baseline — Naïve Bayes is a proven baseline for text classification, especially with TF-IDF sparse features.",
-      "Efficiency — training is extremely fast even on large vocabularies, making it ideal as a reference point.",
-      "Suitable for sparse data — performs well with high-dimensional sparse inputs like TF-IDF.",
-      "Probabilistic output — provides class-membership probabilities useful for the Stacking Classifier meta-learner.",
+      "Strong baseline,Naïve Bayes is a proven baseline for text classification, especially with TF-IDF sparse features.",
+      "Efficiency,training is extremely fast even on large vocabularies, making it ideal as a reference point.",
+      "Suitable for sparse data,performs well with high-dimensional sparse inputs like TF-IDF.",
+      "Probabilistic output,provides class-membership probabilities useful for the Stacking Classifier meta-learner.",
     ],
     assumptions: [
       { assumption: "Feature independence (Naïve assumption)", addressed: "Words are assumed to occur independently given the class. In practice this is violated, but the model still performs well on text data." },
@@ -138,10 +138,10 @@ const models: Model[] = [
     summary:
       "A gradient-boosted decision tree model. Applied after TF-IDF + TruncatedSVD (300 components) for dimensionality reduction, tuned using Optuna.",
     why: [
-      "Non-linear relationships — LightGBM captures complex, non-linear interactions between features that linear models miss.",
-      "Efficiency on large datasets — the leaf-wise growth strategy makes it significantly faster than traditional GBMs.",
-      "Dense feature compatibility — works better with dense features, motivating TF-IDF → SVD (300 components) reduction.",
-      "Strong regularisation — built-in L1/L2 regularisation (reg_alpha, reg_lambda) reduces overfitting.",
+      "Non-linear relationships,LightGBM captures complex, non-linear interactions between features that linear models miss.",
+      "Efficiency on large datasets,the leaf-wise growth strategy makes it significantly faster than traditional GBMs.",
+      "Dense feature compatibility,works better with dense features, motivating TF-IDF → SVD (300 components) reduction.",
+      "Strong regularisation,built-in L1/L2 regularisation (reg_alpha, reg_lambda) reduces overfitting.",
     ],
     assumptions: [
       { assumption: "Does not assume linearity", addressed: "Uses gradient-boosting decision trees, capturing non-linear feature interactions." },
@@ -183,10 +183,10 @@ const models: Model[] = [
     summary:
       "A transformer-based deep learning model. Captures contextual meaning, sarcasm, and word dependencies that bag-of-words models miss. Best-performing model overall.",
     why: [
-      "Contextual embeddings — self-attention captures word meaning based on surrounding context, enabling detection of sarcasm and implied toxicity.",
-      "Outperforms classical models — transformers consistently achieve state-of-the-art on NLP toxicity benchmarks (Jigsaw, HatEval, SemEval).",
-      "No feature independence assumption — unlike Naïve Bayes, DistilBERT models relationships between all words in a sentence simultaneously.",
-      "Pre-trained representations — transfer learning from large-scale pretraining gives a strong starting point with limited fine-tuning data.",
+      "Contextual embeddings,self-attention captures word meaning based on surrounding context, enabling detection of sarcasm and implied toxicity.",
+      "Outperforms classical models,transformers consistently achieve state-of-the-art on NLP toxicity benchmarks (Jigsaw, HatEval, SemEval).",
+      "No feature independence assumption,unlike Naïve Bayes, DistilBERT models relationships between all words in a sentence simultaneously.",
+      "Pre-trained representations,transfer learning from large-scale pretraining gives a strong starting point with limited fine-tuning data.",
     ],
     assumptions: [
       { assumption: "Does not assume feature independence", addressed: "Self-attention mechanism models all pairwise word relationships within each comment." },
@@ -197,7 +197,7 @@ const models: Model[] = [
       "Optuna over: learning_rate (1e-5 to 5e-5), batch_size ∈ {8, 16}, epochs ∈ {2, 3, 4}, weight_decay.",
       "Early stopping on validation loss.",
       "Mixed precision (fp16) training to reduce GPU memory.",
-      "Switched from staged training to direct training on combined dataset — improved consistency.",
+      "Switched from staged training to direct training on combined dataset,improved consistency.",
     ],
     challenges: [
       { challenge: "Lower performance initially (~67%)", solution: "Switched from staged dataset training to training directly on the combined dataset with improved preprocessing consistency." },
@@ -229,9 +229,9 @@ const models: Model[] = [
     summary:
       "An ensemble that stacks Naïve Bayes, Logistic Regression, and LightGBM as base models, with Logistic Regression as the meta-learner trained on out-of-fold predictions.",
     why: [
-      "Combines complementary model strengths — Naïve Bayes captures probabilistic word patterns; Logistic Regression captures linear relationships; LightGBM captures non-linear interactions.",
-      "Reduces individual model weaknesses — stacking can outperform any single base model by learning when each is most reliable.",
-      "Out-of-fold training prevents leakage — base model predictions on unseen fold data are used to train the meta-learner, preventing information leakage.",
+      "Combines complementary model strengths,Naïve Bayes captures probabilistic word patterns; Logistic Regression captures linear relationships; LightGBM captures non-linear interactions.",
+      "Reduces individual model weaknesses,stacking can outperform any single base model by learning when each is most reliable.",
+      "Out-of-fold training prevents leakage,base model predictions on unseen fold data are used to train the meta-learner, preventing information leakage.",
     ],
     assumptions: [
       { assumption: "Base models capture different patterns", addressed: "NB (probabilistic), LR (linear), LightGBM (non-linear) are architecturally diverse by design." },
@@ -274,29 +274,29 @@ const models: Model[] = [
     summary:
       "Unsupervised clustering to validate the natural binary structure of the dataset (toxic vs non-toxic) without using labels, applied to TF-IDF → SVD → StandardScaler features.",
     why: [
-      "Dataset validation — KMeans verifies whether the data naturally separates into toxic/non-toxic groups without using any labels, serving as a sanity check on dataset quality.",
-      "Natural binary structure — t-SNE in Milestone 2 confirmed a clear binary clustering; KMeans formalises this unsupervised.",
-      "Scalability — O(n·k·i·d) complexity is computationally efficient for ~59K samples with 200 SVD features, unlike hierarchical clustering (O(n²)).",
+      "Dataset validation,KMeans verifies whether the data naturally separates into toxic/non-toxic groups without using any labels, serving as a sanity check on dataset quality.",
+      "Natural binary structure,t-SNE in Milestone 2 confirmed a clear binary clustering; KMeans formalises this unsupervised.",
+      "Scalability,O(n·k·i·d) complexity is computationally efficient for ~59K samples with 200 SVD features, unlike hierarchical clustering (O(n²)).",
     ],
     assumptions: [
       { assumption: "Clusters are spherical (equal variance)", addressed: "StandardScaler ensures all 200 SVD dimensions are equally weighted." },
-      { assumption: "k must be specified upfront", addressed: "Determined using the Elbow Method, Silhouette Score, and Davies-Bouldin Index — all agreed on k=2." },
+      { assumption: "k must be specified upfront", addressed: "Determined using the Elbow Method, Silhouette Score, and Davies-Bouldin Index,all agreed on k=2." },
       { assumption: "Uses Euclidean distance", addressed: "StandardScaler makes Euclidean distance meaningful across all features." },
       { assumption: "Sensitive to outliers", addressed: "TruncatedSVD smooths high-dimensional noise before clustering." },
       { assumption: "Assumes similar cluster sizes", addressed: "Stratified sampling from Milestone 2 gives a reasonably balanced dataset." },
     ],
     tuning: [
       "Evaluated k from 2 to 8 using three complementary metrics.",
-      "Elbow Method (Inertia) — identifies the point of diminishing returns.",
-      "Silhouette Score (higher = better, max = 1) — measures cluster cohesion vs. separation.",
-      "Davies-Bouldin Index (lower = better, min = 0) — measures average cluster similarity.",
+      "Elbow Method (Inertia),identifies the point of diminishing returns.",
+      "Silhouette Score (higher = better, max = 1),measures cluster cohesion vs. separation.",
+      "Davies-Bouldin Index (lower = better, min = 0),measures average cluster similarity.",
       "All three metrics agreed on k = 2. Used k-means++ initialisation, n_init=10, max_iter=300.",
     ],
     challenges: [
       { challenge: "Raw text cannot be fed to KMeans directly", solution: "Applied TF-IDF → TruncatedSVD → StandardScaler pipeline from Milestone 2." },
       { challenge: "Silhouette Score and Davies-Bouldin Index disagreed on optimal k with full dataset", solution: "Used Silhouette as primary metric; sampled 10,000 rows to match Milestone 2 analysis and confirm k=2." },
       { challenge: "KMeans sensitive to random initialisation", solution: "Used k-means++ with n_init=10 to ensure stable, reproducible results." },
-      { challenge: "High-dimensional sparse TF-IDF matrix", solution: "Used TruncatedSVD instead of PCA — works directly on sparse matrices." },
+      { challenge: "High-dimensional sparse TF-IDF matrix", solution: "Used TruncatedSVD instead of PCA,works directly on sparse matrices." },
     ],
     metrics: [
       { name: "Silhouette Score",    value: "0.0999" },
@@ -305,7 +305,7 @@ const models: Model[] = [
       { name: "Inertia",             value: "1,993,349" },
     ],
     metricsNote:
-      "Low Silhouette Score and ARI reflect that toxic/non-toxic language does not form geometrically tight clusters in SVD space — this is expected for NLP tasks. The result confirms the binary structure while highlighting that linear feature spaces are insufficient for clean separation, motivating the use of transformer models.",
+      "Low Silhouette Score and ARI reflect that toxic/non-toxic language does not form geometrically tight clusters in SVD space,this is expected for NLP tasks. The result confirms the binary structure while highlighting that linear feature spaces are insufficient for clean separation, motivating the use of transformer models.",
     dataTransformation: [
       { stage: "Raw Text", format: "String", shape: "(N,)" },
       { stage: "After TF-IDF Vectorisation", format: "Sparse float64 matrix", shape: "(N, ~100K vocab)" },
@@ -326,21 +326,21 @@ const models: Model[] = [
     summary:
       "Apriori association rule mining on a 10,000-comment stratified sample. Discovers word co-occurrence patterns unique to toxic vs non-toxic language.",
     why: [
-      "Discover hidden word associations — unlike classifiers that predict labels, Apriori reveals which words frequently co-occur in toxic comments.",
-      "Toxic vs non-toxic contrast — running Apriori separately on each class directly contrasts word patterns unique to toxic content.",
-      "Transactional data fit — each comment is a 'transaction' and each word is an 'item'; Apriori's downward closure prunes the search space efficiently.",
-      "Actionable metrics — Support (how common), Confidence (how reliable), and Lift (how surprising) give a multi-dimensional view of word associations.",
+      "Discover hidden word associations,unlike classifiers that predict labels, Apriori reveals which words frequently co-occur in toxic comments.",
+      "Toxic vs non-toxic contrast,running Apriori separately on each class directly contrasts word patterns unique to toxic content.",
+      "Transactional data fit,each comment is a 'transaction' and each word is an 'item'; Apriori's downward closure prunes the search space efficiently.",
+      "Actionable metrics,Support (how common), Confidence (how reliable), and Lift (how surprising) give a multi-dimensional view of word associations.",
     ],
     assumptions: [
-      { assumption: "Items are categorical (present or absent)", addressed: "Text tokenized into words; each word is either present or absent — one-hot encoded via TransactionEncoder." },
+      { assumption: "Items are categorical (present or absent)", addressed: "Text tokenized into words; each word is either present or absent,one-hot encoded via TransactionEncoder." },
       { assumption: "Transactions are independent", addressed: "Each comment is independently authored and sampled." },
       { assumption: "Minimum support threshold must be set", addressed: "Tested thresholds 0.01–0.10; selected 0.01 as a balance between quantity and quality of itemsets." },
       { assumption: "Downward closure property (frequent subsets of frequent itemsets are also frequent)", addressed: "Inherent to Apriori; requires no special handling." },
-      { assumption: "Word order does not matter", addressed: "Apriori treats items as sets — acceptable since the focus is on co-occurrence, not sequence." },
+      { assumption: "Word order does not matter", addressed: "Apriori treats items as sets,acceptable since the focus is on co-occurrence, not sequence." },
     ],
     tuning: [
       "Swept min_support ∈ {0.01, 0.02, 0.03, 0.05, 0.07, 0.10} on both toxic and non-toxic subsets.",
-      "Selected min_support = 0.01 — balances between too many trivial patterns and too few results.",
+      "Selected min_support = 0.01,balances between too many trivial patterns and too few results.",
       "min_confidence = 0.2 for association rule generation.",
       "max_len = 4 to limit itemset size and computation.",
     ],
@@ -448,7 +448,7 @@ const ModelCard = ({ model }: { model: Model }) => {
       {/* Expanded content */}
       {expanded && (
         <div className="px-8 pb-8 space-y-4 border-t border-gray-100">
-          {/* Performance metrics — always visible when expanded */}
+          {/* Performance metrics,always visible when expanded */}
           <div className="pt-4">
             <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
               Performance
@@ -609,8 +609,8 @@ const ModelsImplemented = () => {
             Models Implemented
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
-            Seven machine-learning models across four required categories —
-            Frequent Pattern Mining, Classification, Clustering, and Regression —
+            Seven machine-learning models across four required categories:
+            Frequent Pattern Mining, Classification, Clustering, and Regression,
             trained and evaluated on our 79K-comment toxicity dataset.
           </p>
         </div>
@@ -637,7 +637,7 @@ const ModelsImplemented = () => {
         <div className="mb-10">
           <h2 className="text-2xl font-semibold tracking-tight mb-2">Classification</h2>
           <p className="text-gray-500 text-sm mb-6">
-            Four models for binary toxicity prediction — from probabilistic baselines to transformer architectures.
+            Four models for binary toxicity prediction,from probabilistic baselines to transformer architectures.
           </p>
           <div className="space-y-4">
             {classificationModels.map((m) => (
