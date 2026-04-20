@@ -27,7 +27,7 @@ const Blueprint = () => {
       id: 4,
       title: "Conclusion & Report",
       date: "Apr 17",
-      status: "upcoming",
+      status: "completed",
       description: "Final Results & Presentation",
     },
   ];
