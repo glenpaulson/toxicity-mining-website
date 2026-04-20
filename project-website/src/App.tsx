@@ -7,6 +7,7 @@ import Proposal from "./pages/Proposal";
 import Team from "./pages/Team";
 import DataExploration from "./pages/DataExploration";
 import ModelsImplemented from "./pages/ModelsImplemented";
+import Conclusion from "./pages/Conclusion";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/proposal" element={<Proposal />} />{" "}
             <Route path="/data-exploration" element={<DataExploration />} />
             <Route path="/models" element={<ModelsImplemented />} />
+            <Route path="/conclusion" element={<Conclusion />} />
             <Route path="/team" element={<Team />} />{" "}
           </Routes>
         </main>

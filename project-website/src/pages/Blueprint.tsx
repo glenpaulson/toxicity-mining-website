@@ -20,7 +20,7 @@ const Blueprint = () => {
       id: 3,
       title: "Model Implementation",
       date: "Apr 3",
-      status: "upcoming",
+      status: "completed",
       description: "Training, Tuning & Testing",
     },
     {
