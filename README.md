@@ -45,4 +45,4 @@ We have identified several challenges and implemented specific mitigations:
 - [x] Milestone 1: Project Framing & Website Launch
 - [x] Milestone 2: Data Preparation/Collection & Cleaning
 - [x] Milestone 3: Model Implementation
-- [ ] Milestone 4: Conclusion, Results & Project Report
+- [x] Milestone 4: Conclusion, Results & Project Report
